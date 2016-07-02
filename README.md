@@ -1,18 +1,13 @@
 #ExampleBot
 
-This bot retweets the latest tweet using the "#mediaarts" hashtag. It attempts to retweet once per hour.
-
-_Note: you must be comfortable using your computer's command line interface to use this bot. If you've never used it, there are tutorials for [Mac OSX](http://blog.teamtreehouse.com/introduction-to-the-mac-os-x-command-line) and [Windows](http://www.bleepingcomputer.com/tutorials/windows-command-prompt-introduction/)._
+This bot tweets `Current status: {gif}` once every ten minutes. It is heaaaavily based on https://github.com/dariusk/examplebot!
 
 ##Installation
 
-If you don't already have have them, please install [Node.js](http://nodejs.org/). This will install two programs: `node`, which runs JavaScript from the command line, and `npm`, which helps you install software that Node.js can run.
+You can use the provide node package for all the fun
 
-Make an empty project directory somewhere convenient for you, [download this file](https://github.com/dariusk/examplebot/archive/master.zip), and unzip the contents to your project directory. Go to your project directory in the command line. There should be four files there: `.gitignore`, `README.md`, `bot.js` and `config.js`. In that directory type:
+`npm install`
 
-`npm install twit`
-
-This installs some code to the `npm_modules` subdirectory, which you don't need to worry about. (It's Twit, the library that lets us talk to Twitter.)
 
 ##Connecting to Twitter
 
@@ -28,7 +23,7 @@ Next you'll see a screen with a "Details" tab. Click on the "Settings" tab and u
 
 Then go to the Keys and Access Tokens tab, and at the bottom click "create my access token". Nothing might happen immediately. Wait a minute and reload the page. then there should be "access token" and "access token secret", which are both long strings of letters and numbers.
 
-Now use a text editor to open up the "config.js" file. It should look like this:
+Now use a text editor to open up the `config/config.js` file. It should look like this:
 
 ```javascript
 module.exports = {
