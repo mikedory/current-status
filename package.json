@@ -1,11 +1,11 @@
 {
   "name": "current-status-bot",
   "version": "1.0.0",
-  "description": "This bot retweets the latest tweet using the \"#mediaarts\" hashtag. It attempts to retweet once per hour.",
+  "description": "This bot tweets a current status gif. It attempts to do so once every 20 minutes.",
   "main": "bot.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
+  "author": "Mike Dory",
   "license": "ISC"
 }
