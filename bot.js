@@ -6,14 +6,20 @@ var base64 = require('node-base64-image');
 // We need to include our configuration file
 var T = new Twit(require('./config/config.js'));
 
+// The Giphy endpoint for a random gif
+randomGIFURL = 'http://api.giphy.com/v1/gifs/random?api_key=dc6zaTOxFJmzC&tag=current+status';
 
+// Snag a random gif from Giphy
 function getRandomGif() {
-	request.get('http://api.giphy.com/v1/gifs/random?api_key=dc6zaTOxFJmzC&tag=current+status', function (error, response, body) {
+	request.get(randomGIFURL, function (error, response, body) {
 	  if (!error && response.statusCode == 200) {
+
 	  	gifJSON = JSON.parse(body);
 	    gifURL = (gifJSON.data.image_url) 
 	    gifStaticURL = (gifJSON.data.fixed_height_small_still_url)
 
+	  	// TODO: HEY this is a hack
+	  	// One should remove this crap from the get function, and make it into its own thing
 	    updateStatusWithGif(gifURL);
 	    updateProfileImage(gifStaticURL);
 	  }
@@ -26,6 +32,7 @@ function updateStatusWithGif(gifURL) {
 	tweetString = "current status: " + gifURL;
 }
 
+// Updates the bot's profile image
 function updateProfileImage(gifStaticURL) {
 	var options = {string: true};
 	base64.encode(gifStaticURL, options, function (err, image) {
