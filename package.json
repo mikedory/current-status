@@ -9,6 +9,7 @@
   "author": "Mike Dory",
   "license": "ISC",
   "dependencies": {
+    "node-base64-image": "^1.0.1",
     "requests": "^0.1.7",
     "twit": "^2.2.4"
   }
