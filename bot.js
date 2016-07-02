@@ -12,60 +12,36 @@ function getRandomGif() {
 	  if (!error && response.statusCode == 200) {
 	  	gifJSON = JSON.parse(body);
 	    gifURL = (gifJSON.data.image_url) 
-	    tweetGif(gifURL);
+	    gifStaticURL = (gifJSON.data.fixed_height_small_still_url)
+
+	    updateStatusWithGif(gifURL);
+	    updateProfileImage(gifStaticURL);
 	  }
 	})
-
-	// request
-	//   .get('http://api.giphy.com/v1/gifs/random?api_key=dc6zaTOxFJmzC&tag=current+status', {json:true})
-	//   .on('response', function(response) {
-	//     console.log(response.statusCode) // 200
-	//     console.log(body) // 'image/png'
-	//     gifURL = 'watwat';
-	//     retweetLatest(gifURL);
-
-	//   })
 }
 
-// This function finds the latest tweet with the #mediaarts hashtag, and retweets it.
-function tweetGif(gifURL) {
-
-	console.log(gifURL);
-
+// Tweets out the gif
+function updateStatusWithGif(gifURL) {
+	console.log("tweeting this URL: " + gifURL);
 	tweetString = "current status: " + gifURL;
+}
 
-	// T.post('statuses/update', { status: tweetString }, function(err, data, response) {
-	// 		if (response) {
-	// 			console.log('Success! Check your bot, it should have retweeted something.')
-	// 		}
-	// 		// If there was an error with our Twitter call, we print it out here.
-	// 		if (err) {
-	// 			console.log('There was an error with Twitter:', err);
-	// 		}
-	// })
-
-
-
-	profileImageURL = 'http://s3.amazonaws.com/giphygifs/media/Ggjwvmqktuvf2/100w_s.gif';
+function updateProfileImage(gifStaticURL) {
 	var options = {string: true};
-
-	base64.encode(profileImageURL, options, function (err, image) {
+	base64.encode(gifStaticURL, options, function (err, image) {
     if (err) {
         console.log(err);
     }
 		T.post('account/update_profile_image', { image: image }, function(err, data, response) {
 				if (response) {
-					console.log('Should have updated the image')
+					console.log('Updating profile image to: ' + gifStaticURL)
 				}
 				// If there was an error with our Twitter call, we print it out here.
 				if (err) {
 					console.log('There was an error with Twitter:', err);
 				}
 		});
-
-    console.log(image);
   });
-
 
 }
 
