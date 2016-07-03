@@ -30,6 +30,17 @@ function getRandomGif() {
 function updateStatusWithGif(gifURL) {
 	console.log("tweeting this URL: " + gifURL);
 	tweetString = "current status: " + gifURL;
+
+	// tweet dat gif!
+	T.post('statuses/update', { status: tweetString }, function(err, data, response) {
+			if (response) {
+				console.log('Success!')
+			}
+			// If there was an error with our Twitter call, we print it out here.
+			if (err) {
+				console.log('There was an error with Twitter:', error);
+			}
+	})
 }
 
 // Updates the bot's profile image
@@ -39,6 +50,8 @@ function updateProfileImage(gifStaticURL) {
     if (err) {
         console.log(err);
     }
+
+    // update the profile image on Twitter
 		T.post('account/update_profile_image', { image: image }, function(err, data, response) {
 				if (response) {
 					console.log('Updating profile image to: ' + gifStaticURL)
