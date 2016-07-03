@@ -29,7 +29,7 @@ function getRandomGif() {
 // Tweets out the gif
 function updateStatusWithGif(gifURL) {
 	console.log("tweeting this URL: " + gifURL);
-	tweetString = "current status: " + gifURL;
+	tweetString = "Current status: " + gifURL;
 
 	// tweet dat gif!
 	T.post('statuses/update', { status: tweetString }, function(err, data, response) {
