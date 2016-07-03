@@ -22,9 +22,31 @@ function getRandomGif() {
 	  	// One should remove this crap from the get function, and make it into its own thing
 	    updateStatusWithGif(gifURL);
 	    updateProfileImage(gifStaticURL);
+	    // uploadGIFAsMedia(gifURL)
 	  }
 	})
 }
+
+// Send the gif up as an encoded media to Twitter
+function uploadGIFAsMedia(gifURL) {
+
+	var options = {string: true};
+	base64.encode(gifURL, options, function (err, image) {
+		T.post('media/upload', { media_data: image }, function (err, data, response) {
+	    if (err) {
+	      console.log(err);
+	    }
+	    if (response) {
+				console.log(response);
+			}
+		})
+  });
+
+	// // TODO
+	// // get this the hell out of this function
+	// updateProfileImage(gifStaticURL);
+
+	}
 
 // Tweets out the gif
 function updateStatusWithGif(gifURL) {
@@ -37,7 +59,7 @@ function updateProfileImage(gifStaticURL) {
 	var options = {string: true};
 	base64.encode(gifStaticURL, options, function (err, image) {
     if (err) {
-        console.log(err);
+      console.log(err);
     }
 		T.post('account/update_profile_image', { image: image }, function(err, data, response) {
 				if (response) {
