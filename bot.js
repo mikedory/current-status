@@ -15,17 +15,17 @@ randomGIFURL = 'http://api.giphy.com/v1/gifs/random?api_key=dc6zaTOxFJmzC&tag=cu
 // Snag a random gif from Giphy
 function getRandomGif(randomGIFURL) {
 	request.get(randomGIFURL, function (error, response, body) {
-	  if (!error && response.statusCode == 200) {
+	    if (!error && response.statusCode == 200) {
 
-	  	gifJSON = JSON.parse(body);
-	    gifURL = (gifJSON.data.image_url) 
-	    gifStaticURL = (gifJSON.data.fixed_height_small_still_url)
+		  	gifJSON = JSON.parse(body);
+		    gifURL = (gifJSON.data.image_url) 
+		    gifStaticURL = (gifJSON.data.fixed_height_small_still_url)
 
-	  	// TODO: HEY this is a hack
-	  	// One should remove this crap from the get function, and make it into its own thing
-	    updateStatusWithGif(gifURL);
-	    updateProfileImage(gifStaticURL);
-	  }
+		  	// TODO: HEY this is a hack
+		  	// One should remove this crap from the get function, and make it into its own thing
+		    updateStatusWithGif(gifURL);
+		    updateProfileImage(gifStaticURL);
+	    }
 	})
 }
 
@@ -36,13 +36,13 @@ function updateStatusWithGif(gifURL) {
 
 	// tweet dat gif!
 	T.post('statuses/update', { status: tweetString }, function(err, data, response) {
-			if (response) {
-				console.log('Success!')
-			}
-			// If there was an error with our Twitter call, we print it out here.
-			if (err) {
-				console.log('Twitter error:', error);
-			}
+		if (response) {
+			console.log('Success!')
+		}
+		// If there was an error with our Twitter call, we print it out here.
+		if (err) {
+			console.log('Twitter error:', error);
+		}
 	})
 }
 
@@ -60,13 +60,13 @@ function updateProfileImage(gifStaticURL) {
 
     // update the profile image on Twitter
 		T.post('account/update_profile_image', { image: image }, function(err, data, response) {
-				if (response) {
-					console.log('Updating profile image to: ' + gifStaticURL)
-				}
-				// If there was an error with our Twitter call, we print it out here.
-				if (err) {
-					console.log('There was an error with Twitter:', err);
-				}
+			if (response) {
+				console.log('Updating profile image to: ' + gifStaticURL)
+			}
+			// If there was an error with our Twitter call, we print it out here.
+			if (err) {
+				console.log('There was an error with Twitter:', err);
+			}
 		});
   });
 
