@@ -1,7 +1,10 @@
-// load up the libs
+// load up the dependencies
 var Twit = require('twit');
 var request = require('request');
 var base64 = require('node-base64-image');
+
+// load the local libs
+// var 
 
 // We need to include our configuration file
 var T = new Twit(require('./config/config.js'));
@@ -10,7 +13,7 @@ var T = new Twit(require('./config/config.js'));
 randomGIFURL = 'http://api.giphy.com/v1/gifs/random?api_key=dc6zaTOxFJmzC&tag=current+status';
 
 // Snag a random gif from Giphy
-function getRandomGif() {
+function getRandomGif(randomGIFURL) {
 	request.get(randomGIFURL, function (error, response, body) {
 	  if (!error && response.statusCode == 200) {
 
@@ -38,15 +41,19 @@ function updateStatusWithGif(gifURL) {
 			}
 			// If there was an error with our Twitter call, we print it out here.
 			if (err) {
-				console.log('There was an error with Twitter:', error);
+				console.log('Twitter error:', error);
 			}
 	})
 }
 
 // Updates the bot's profile image
 function updateProfileImage(gifStaticURL) {
+
+	// base 64 encode that shiz
 	var options = {string: true};
 	base64.encode(gifStaticURL, options, function (err, image) {
+    
+    // catch errors
     if (err) {
         console.log(err);
     }
