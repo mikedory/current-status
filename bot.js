@@ -4,7 +4,7 @@ var request = require('request');
 var base64 = require('node-base64-image');
 
 // load the local libs
-// var 
+// var gifLib = require('gitlib')
 
 // We need to include our configuration file
 var T = new Twit(require('./config/config.js'));
