@@ -59,15 +59,15 @@ function updateProfileImage(gifStaticURL) {
   }
 
   // update the profile image on Twitter
-    T.post('account/update_profile_image', { image: image }, function(err, data, response) {
-      if (response) {
-        console.log('Updating profile image to: ' + gifStaticURL)
-      }
-      // If there was an error with our Twitter call, we print it out here.
-      if (err) {
-        console.log('There was an error with Twitter:', err);
-      }
-    });
+  T.post('account/update_profile_image', { image: image }, function(err, data, response) {
+    if (response) {
+      console.log('Updating profile image to: ' + gifStaticURL)
+    }
+    // If there was an error with our Twitter call, we print it out here.
+    if (err) {
+      console.log('There was an error with Twitter:', err);
+    }
+    }); // hey this looks unnecessary or something.
   });
 
 }
